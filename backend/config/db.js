@@ -8,7 +8,7 @@ export const connectDB=async ()=>{
     console.log("Database is Connected")
 }
     catch(error){
-        console.log("$error.message")
+        console.log('$error.message')
         process.exit(1)
 
 
