@@ -20,6 +20,7 @@ function Navbar() {
             }
 
             >
+            <Link to={"/"}>
             <Text
              bgGradient={"linear(to-r, cyan.400, blue.500)"}
             bgClip='text'
@@ -28,6 +29,7 @@ function Navbar() {
                 >
             Products Store 🛒
         </Text>
+        </Link>
         <HStack
         spacing={3}
         alignItems={"center"}>

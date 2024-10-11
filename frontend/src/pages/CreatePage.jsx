@@ -1,5 +1,6 @@
-import { Button, Container, Heading, Input, VStack,Box, useColorMode, useColorModeValue } from '@chakra-ui/react'
+import { Button, Container, Heading, Input, VStack,Box, useColorMode, useColorModeValue, useToast } from '@chakra-ui/react'
 import React, { useState } from 'react'
+import { useProductsStore } from '../store/products.js'
 
 function CreatePage() {
     const [newProduct,setNewProduct]=useState({
@@ -7,9 +8,36 @@ function CreatePage() {
         price:"",
         img:""
     })
-    const handleSubmit=()=>{
-        console.log(newProduct)
-    }
+    const {createProduct} = useProductsStore()
+    const toast =useToast()
+    const handleSubmit=async ()=>{
+        const {success,message}=await createProduct(newProduct)
+        if(!success){
+            toast({
+                title:"Error",
+                description:message,
+                isClosable:true,
+                duration:5000,
+                status:"error"
+
+            })
+        }
+
+        else{
+             toast({
+                title:"Success",
+                description:message,
+                isClosable:true,
+                duration:5000,
+                status:"success"
+
+            })
+        }
+        setNewProduct({name:"",price:"",img:""})
+
+        }
+ 
+    
   return (
     <Container
     maxW={"container.sm"}
@@ -44,7 +72,7 @@ function CreatePage() {
 
     </Container>
 
-  )
-}
+)
 
+}
 export default CreatePage
