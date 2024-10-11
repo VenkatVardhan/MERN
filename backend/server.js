@@ -18,7 +18,11 @@ if(process.env.NODE_ENV==="production"){
         res.sendFile(path.resolve(__dirname,"frontend","dist","index.html"))
     })
 }
+app.get('/', (req, res) => {
+    res.send('Server is running!');
+});
+
 app.listen(PORT, ()=>{
     connectDB()
-    console.log("Server Started http://localhost:5000/")
+    console.log(`Server Started http://localhost:${PORT}/`)
 })
